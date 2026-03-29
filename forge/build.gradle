@@ -80,6 +80,7 @@ sourceSets {
     	ext.refMap = 'wsmc.refmap.json'
         java {
             srcDir "../src/main/java"
+            srcDir "../src/mixin/java"
         }
         resources {
             srcDir "../src/main/resources"

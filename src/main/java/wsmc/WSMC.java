@@ -7,13 +7,29 @@ public class WSMC {
 	public static boolean dumpBytes =
 			System.getProperty("wsmc.dumpBytes", "false").equalsIgnoreCase("true");
 
+	private static wsmc.Logger logger = new wsmc.Logger() {
+		@Override
+		public void debug(String msg) {
+			if (!debug) return;
+			System.out.println("[WSMC D] " + msg);
+		}
+
+		@Override
+		public void info(String msg) {
+			System.out.println("[WSMC I] " + msg);
+		}
+	};
+
+	public static void setLogger(wsmc.Logger logger) {
+		WSMC.logger = logger;
+	}
+
 	public static void debug(String msg) {
-		if (!debug) return;
-		System.out.println("[WSMC D] " + msg);
+		logger.debug("[WSMC D] " + msg);
 	}
 
 	public static void info(String msg) {
-		System.out.println("[WSMC I] " + msg);
+		logger.info("[WSMC I] " + msg);
 	}
 
 	public static boolean debug() {
