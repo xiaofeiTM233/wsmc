@@ -9,7 +9,7 @@ For Minecraft Forge, Neoforge and Fabric:
 * 1.20.1
 * 1.18.2, 1.19.x, 1.20
 
-This branch is for 1.21.11 as of 2026/01/12.
+This branch is for 1.21.11 only.
 
 This mod runs standalone and does not have any dependency.
 
