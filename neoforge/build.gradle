@@ -3,7 +3,7 @@ plugins {
 	id 'eclipse'
 	id 'idea'
 	id 'maven-publish'
-	id 'net.neoforged.gradle.userdev' version '7.1.20'
+	id 'net.neoforged.gradle.userdev' version '7.1.38'
 }
 
 apply from: '../common.gradle'
@@ -14,8 +14,8 @@ project.ext.mod_id = project.archives_base_name;
 version = project.mod_version
 group = project.dev_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 
-// Mojang ships Java 21 to end users starting in 1.20.5, so mods should target Java 21.
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+// Minecraft 26.1 requires Java 25.
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 base {
@@ -113,7 +113,7 @@ tasks.named('jar', Jar).configure {
         ])
     }
 }
-jar.archiveClassifier = 'neoforge-slim';
+jar.archiveClassifier.set("neoforge-${project.minecraft_version}-slim")
 
 // This block of code expands all declared replace properties in the specified resource targets.
 // A missing property will result in an error. Properties are expanded using ${} Groovy notation.
@@ -133,9 +133,13 @@ tasks.withType(JavaCompile).configureEach {
 	options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
 
+tasks.withType(JavaExec).configureEach {
+	standardInput = System.in
+}
+
 jarJar.enable()
 tasks.jarJar {
-    archiveClassifier.set('neoforge')
+    archiveClassifier.set("neoforge-${project.minecraft_version}")
 }
 
 // IDEA no longer automatically downloads sources/javadoc jars for dependencies, so we need to explicitly enable the behavior.
