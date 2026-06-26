@@ -1,7 +1,15 @@
 {
     "pack": {
-        "description": "MobZ resources",
-        "pack_format": 5,
-        "_comment": "A pack_format of 5 requires json lang files and some texture changes from 1.15. Note: we require v5 pack meta for all mods."
+        "description": "WSMC resources",
+        "pack_format": 84,
+        "min_format": [
+            84,
+            0
+        ],
+        "max_format": [
+            101,
+            1
+        ],
+        "_comment": "Minecraft 26.1 uses resource pack format 84.0 and data pack format 101.1."
     }
 }

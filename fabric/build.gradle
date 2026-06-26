@@ -25,9 +25,6 @@ dependencies {
 
 	// javax.annotation.Nullable
 	implementation 'com.google.code.findbugs:jsr305:3.0.1'
-
-	// Netty's http and websocket support
-	include(implementation(group: 'io.netty', name: 'netty-codec-http', version: project.netty_version))
 }
 
 
@@ -47,17 +44,17 @@ processResources {
 
 // configure the source folders
 sourceSets {
-    main {
-        java {
-            srcDir "../src/main/java"
-        }
-        resources {
-            srcDir "../src/main/resources"
-            srcDir "../src/generated/resources"
-            exclude '.cache'
-            exclude 'Thumbs.db'
-        }
-    }
+	main {
+		java {
+			srcDir "../src/main/java"
+		}
+		resources {
+			srcDir "../src/main/resources"
+			srcDir "../src/generated/resources"
+			exclude '.cache'
+			exclude 'Thumbs.db'
+		}
+	}
 }
 
 // ensure that the encoding is set to UTF-8, no matter what the system default is
