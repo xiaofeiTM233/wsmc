@@ -72,14 +72,17 @@ def version_prefix = (minSupportedVersion == maxSupportedVersion) ? minSupported
 project.ext.publish_prefix = version_prefix + '-' + project.ext.mod_version;
 
 // Define a custom task to dump properties
+def exportedMinecraftVersionRange = project.minecraft_version_range;
+def exportedMinecraftVersionsSupported = project.minecraft_versions_supported.join(', ');
+def exportedPublishPrefix = project.publish_prefix;
 task exportProperties {
 	outputs.file file("$buildDir/info/properties.txt")
 	doLast {
 		outputs.files.singleFile.withWriter { writer -> {
 			mergedProperties.each { key, value -> writer.writeLine("${key}=${value}"); }
-			writer.writeLine("minecraft_version_range=${project.minecraft_version_range}");
-			writer.writeLine("minecraft_versions_supported=${project.minecraft_versions_supported.join(', ')}");
-			writer.writeLine("publish_prefix=${project.publish_prefix}");
+			writer.writeLine("minecraft_version_range=${exportedMinecraftVersionRange}");
+			writer.writeLine("minecraft_versions_supported=${exportedMinecraftVersionsSupported}");
+			writer.writeLine("publish_prefix=${exportedPublishPrefix}");
 		}}
 	}
 }
