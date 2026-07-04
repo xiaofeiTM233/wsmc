@@ -1,0 +1,6 @@
+name: WSMC
+version: "${version}"
+main: wsmc.paper.WSMCPaperPlugin
+api-version: "1.21"
+description: Enable WebSocket support for Paper servers. Allows players to connect via WebSocket through CDN on the same port.
+author: Rikka0w0
